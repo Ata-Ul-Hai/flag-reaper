@@ -1,0 +1,40 @@
+# Local Unleash for the Feature Flag Reaper demo.
+# Pinned image tag; auth via init admin API token (AUTH_TYPE=none is deprecated).
+services:
+  unleash-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: unleash
+      POSTGRES_USER: unleash
+      POSTGRES_PASSWORD: unleash
+    volumes:
+      - unleash-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U unleash -d unleash"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  unleash:
+    image: unleashorg/unleash-server:8.2.0
+    depends_on:
+      unleash-db:
+        condition: service_healthy
+    ports:
+      - "4242:4242"
+    environment:
+      DATABASE_HOST: unleash-db
+      DATABASE_NAME: unleash
+      DATABASE_USERNAME: unleash
+      DATABASE_PASSWORD: unleash
+      DATABASE_SSL: "false"
+      # Seed an admin API token at first boot so the reaper + seed scripts can
+      # call the Admin API without clicking through the UI.
+      INIT_ADMIN_API_TOKENS: "*:*.b8f8c6a1d2e34f5a9c7b0d8e1f2a3b4c5d6e7f8a9b0c1d2e"
+      # Client (backend) token for the traffic simulator SDK (Unleash v5+ typed tokens)
+      INIT_BACKEND_API_TOKENS: "*:development.traffic-sim-1a2b3c4d5e6f7g8h"
+      # Quiet console; keep default UI auth (simple local admin bootstrap).
+      LOG_LEVEL: warn
+
+volumes:
+  unleash-db-data:
