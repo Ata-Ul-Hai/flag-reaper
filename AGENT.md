@@ -211,31 +211,34 @@ flag-reaper/
 
 ## 10. Milestones
 
-M0 ✅ **done** (hands-on TrueForge spike — see `docs/trueforge-notes.md`).
-Key finds: SSRF guard blocks loopback MCP URLs (fix: `OUTBOUND_URL_ALLOWED_HOSTS`);
-FastMCP registration + tool listing verified end-to-end; agent/skill/approval
-API schemas captured; local sandbox fallback exists on darwin (Daytona optional
-for local dev — still nice for the "cloud sandbox" story).
+M0 ✅ done (hands-on spike — `docs/trueforge-notes.md`). Finds: SSRF guard
+blocks loopback MCP URLs (`OUTBOUND_URL_ALLOWED_HOSTS` fix); FastMCP verified
+end-to-end; local sandbox fallback exists on darwin.
 
-M1 Unleash up + seeded + inventory tool. Done when `make scan` prints the
-inventory table with traffic + lastSeenAt.
+M1 ✅ done. Unleash **8.2.0** verified live: `/api/admin/features` removed →
+project-scoped endpoints; usage via `GET /admin/client-metrics/features/{name}`;
+typed tokens (backend token for the SDK, created via Admin API, secret persisted
+to `audit/unleash_client_token`); `make scan` prints the inventory table.
 
-M2 Tracer + classifier. Done when the 8-flag matrix produces exact expected
-verdicts with `path:line` evidence.
+M2 ✅ done. Exact 8 verdicts reproduced from clean `make demo-reset` with
+`path:line` evidence (verified 2026-09-26).
 
-M3 Sandbox removal + tests. Done when `new-checkout-flow` removal passes tests
-end-to-end AND a deliberately broken patch downgrades to plan-only.
+M3 ✅ done. Both tier-1 paths verified on disposable copies: code+flag
+(branch-survival keeps else branch, tests of removed behavior deleted, 11/11
+green) and tests+flag (10/10 green). Downgrade path coded.
 
-M4 PR generation via PyGithub (approval-gated). Done when a real PR exists on
-the demo repo, correctly formatted.
+M4 ✅ code done (prs.py, approval-gated open_pr). **Pending: user creates a
+fine-grained PAT (Contents + PR write, no merge) and sets GITHUB_* env** —
+then a real PR lands on Ata-Ul-Hai/flag-reaper-demo.
 
-M5 Gate + audit wiring in TrueForge. Done when an UNKNOWN question asked in
-chat unblocks exactly that flag via `answer_unknown`, and the audit trail shows
-every step.
+M5 ✅ code done. Reaper registered in TrueForge with all 8 tools visible;
+skill `reaper-runbook` registered (github.com/Ata-Ul-Hai/flag-reaper-skill);
+approvals + ask-user + generative UI enabled in `scripts/setup_agent.py`.
+**Pending: user adds a model API key in TrueForge, then run the script.**
 
-M6 Demo polish: README + diagram, `make demo-reset`, video script, build-story
-post (LinkedIn/X, tag @truefoundry @polariscodes — ₹50k/₹25k story prizes are
-open to all Round-1 registrants), rehearse 2–3×.
+M6 🔄 in progress: README ✅, `make demo-reset` ✅ (volume-wipe, truly-zero
+metrics), demo script ✅ (`docs/demo-script.md`). Remaining: rehearse 2–3×,
+record video, build-story post.
 
 ---
 
