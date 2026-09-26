@@ -114,7 +114,20 @@ into the sandbox at `/opt/tfy/skills/{name}`.
   sandbox; MCP calls from in-sandbox scripts are bridged back through the
   harness (approvals still enforced).
 
-## 8. Implications for the build
+## 8. Known bug: TrueForge crashes when a connected MCP server dies
+
+Verified 26 Sep: killing the local reaper MCP server while TrueForge was
+running crashed the entire TrueForge process — its MCP client retried the
+broken streamable-HTTP connection and hit an
+`UnhandledPromiseRejection` in `StreamableHTTPClientTransport._scheduleReconnection`
+(Node 26 treats unhandled rejections as fatal). Symptom in the browser:
+"Something went wrong — Failed to fetch" on turn submit.
+
+Rule: **never restart the reaper server while TrueForge is running — or
+restart TrueForge right after.** `make stack` starts both in the safe order.
+Worth reporting upstream (github.com/truefoundry/trueforge issues).
+
+## 9. Implications for the build
 
 1. Always start TrueForge via `scripts/run_trueforge.sh` (sets the allowlist).
 2. Reaper = FastMCP Python server on `127.0.0.1:8900/mcp`, registered as
