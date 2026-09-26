@@ -89,6 +89,10 @@ mean exactly that — zero since metrics began. The reaper never fabricates
 historical usage; the traffic simulator (`make traffic`) generates *real*
 metrics through the real SDK → `/api/client/metrics` → Admin API pipeline.
 
+Building this also surfaced an upstream TrueForge bug (harness crash in the
+MCP reconnection path when a registered server dies), reported as
+[truefoundry/trueforge#878](https://github.com/truefoundry/trueforge/issues/878).
+
 ## AI assistants used (disclosure)
 
 Built with an AI coding agent (ZCode / Claude-GLM) for implementation
