@@ -1,0 +1,5 @@
+# Per-environment search configuration. Flag keys for search are defined here
+# and looked up by app/search.py at runtime.
+search:
+  ranking: beta-search-ranking
+  suggestions: search-suggestions-v1

@@ -1,0 +1,5 @@
+fastmcp>=0.4
+requests>=2.31
+PyGithub>=2.3
+PyYAML>=6
+UnleashClient>=6.7
