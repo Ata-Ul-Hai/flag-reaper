@@ -41,6 +41,7 @@ demo-reset:
 	python3 scripts/seed_unleash.py > /dev/null
 	cd demo/checkout-service && git checkout -- . && git clean -fdq
 	-python3 -c "import pathlib,shutil; shutil.rmtree(pathlib.Path('/tmp/reaper-work'), ignore_errors=True)"
+	rm -f audit/state.json
 	python3 -c "from reaper import audit; audit.reset()"
 	@echo "demo reset (volume wiped — metrics history is truly zero). Start traffic with: make traffic"
 

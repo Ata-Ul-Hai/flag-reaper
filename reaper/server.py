@@ -69,11 +69,13 @@ def trace_references(flag_key: str) -> str:
 
 
 @mcp.tool
-def classify_flags(min_age_hours: float = 72.0, window_days: int = 60) -> str:
+def classify_flags(min_age_hours: float = 0.0, window_days: int = 60) -> str:
     """Run the full scan: inventory → trace → ordered verdict rules for every
     flag. Returns the report with verdicts REMOVABLE / STILL_LIVE / UNKNOWN /
     SKIP, each with path:line evidence. UNKNOWN flags require a human answer —
-    ask the user via a question; do not guess."""
+    ask the user via a question; do not guess.
+    min_age_hours defaults to 0 (demo/fresh instances); pass e.g. 72 in real
+    usage to skip flags younger than the window."""
     report = pipeline.scan(min_age_hours=min_age_hours, window_days=window_days)
     return json.dumps(report, indent=1)
 
