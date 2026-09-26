@@ -1,4 +1,4 @@
-.PHONY: help install unleash seed traffic scan mcp serve trueforge stack demo-reset audit agent clean
+.PHONY: help install unleash seed traffic scan mcp serve trueforge stack restart demo-reset audit agent clean
 
 help:
 	@echo "Feature Flag Reaper — demo targets"
@@ -41,6 +41,13 @@ trueforge:
 stack:
 	python3 -m reaper.server & sleep 2
 	scripts/run_trueforge.sh
+
+# kill both, then start in the safe order (loads .env — put GITHUB_* there)
+restart:
+	pkill -f "reaper.server" 2>/dev/null; true
+	pkill -f "trueforge" 2>/dev/null; true
+	sleep 1
+	@$(MAKE) stack
 
 demo-reset:
 	pkill -f simulate_traffic 2>/dev/null; true
