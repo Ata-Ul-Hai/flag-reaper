@@ -13,6 +13,11 @@ has no merge scope, by design.
 > The demo isn't "an agent that tidies flags" — it's the hardest problem in
 > agentic automation made visible: acting decisively where safety is provable,
 > refusing where it isn't, with the audit trail to show for it.
+>
+> Same genus as the classic "idle resource janitors" — a Cloud Cost Janitor
+> finds idle instances, an Access Reviewer finds unused permissions, the
+> Feature Flag Reaper finds zombie flags: correlate the systems, prove it's
+> safe, draft the teardown, and stop at the one step that can't be undone.
 
 ## Architecture
 
@@ -83,6 +88,13 @@ On a fresh Unleash, "zero evaluations in the last hour" and `lastSeenAt: null`
 mean exactly that — zero since metrics began. The reaper never fabricates
 historical usage; the traffic simulator (`make traffic`) generates *real*
 metrics through the real SDK → `/api/client/metrics` → Admin API pipeline.
+
+## AI assistants used (disclosure)
+
+Built with an AI coding agent (ZCode / Claude-GLM) for implementation
+assistance and web research against TrueForge + Unleash documentation,
+per hackathon rule 3. All architecture decisions, the verdict rules, and the
+demo design are documented in [AGENT.md](AGENT.md).
 
 ## Repo layout
 

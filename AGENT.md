@@ -264,7 +264,38 @@ resume → audit trail → "the one line it will not cross: the merge."
 
 ---
 
-## 13. Prerequisites checklist (owner: user)
+## 13. Event intel — HackCulture page (official rules, found 26 Sep)
+
+Source: hackculture.io/hackathons/agents-that-act (fuller than the Luma page).
+
+**Schedule (26 Sep):** online registration + team formation until **18:00**;
+**offline elimination round 09:00–19:00** at DivyaSree Technopark A3, EPIP
+Zone, Brookefield. Teams 1–4, solo allowed.
+
+**Themes (suggestions, not tracks — "You can build for any domain"):**
+Cloud Cost Janitor · Migration Rehearsal Agent · Release Captain ·
+Ticket Resolver · Access Reviewer · Runbook Executor.
+→ The Reaper is the same genus (Cloud Cost Janitor / Access Reviewer pattern
+applied to feature flags): find idle things → evidence → proposed teardown →
+approval on the destructive step. Borrow this framing when pitching.
+
+**Partner credits:** OpenAI is the Official Model Partner (API credits for
+shortlisted teams) — set up the agent with an OpenAI key at the venue if no
+other model key exists. AWS credits also available.
+
+**Rules that matter:**
+- Rule 2: "Projects must be built during the hackathon. Pre-built projects
+  are not eligible." + "Prior research and reading the TrueForge docs are
+  allowed." → Treat the 7-hour day as the build: continue development live
+  (deepen TrueForge integration, polish), be ready to walk judges through
+  every file (rule 3 requires understanding the architecture).
+- Rule 3: AI assistants (Claude/Copilot/Cursor) ALLOWED, must be **disclosed
+  in the README** → done (see README section).
+- Rule 5: no API keys in repo/demo video → our committed Unleash token is a
+  local-only dev token guarding a local Docker container (acceptable), never
+  mention real PATs on screen.
+
+## 14. Prerequisites checklist (owner: user)
 
 - [x] Node ≥ 22.14, Docker running, ripgrep, Python 3.13 (all verified on this Mac)
 - [ ] Round-2 invitation confirmed (email/Discord) + kickoff time noted
