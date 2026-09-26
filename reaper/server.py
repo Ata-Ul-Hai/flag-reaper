@@ -173,4 +173,7 @@ async def _audit_view(request):
 
 if __name__ == "__main__":
     port = int(os.environ.get("REAPER_MCP_PORT", "8900"))
-    mcp.run(transport="http", host="127.0.0.1", port=port, path="/mcp")
+    try:
+        mcp.run(transport="http", host="127.0.0.1", port=port, path="/mcp")
+    except KeyboardInterrupt:
+        print("\nreaper MCP server stopped cleanly.")
